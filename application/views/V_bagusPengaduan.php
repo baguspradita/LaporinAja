@@ -1,80 +1,110 @@
-<h1 class="text-white fw-bolder text-center " style="text-shadow: 2px 2px grey;">LaporinAja</h1>
-<h3 class="text-white  mb-5 text-center fw-bolder " style="text-shadow: 2px 2px grey;">Layanan Aspirasi dan Pengaduan
-    Online Rakyat
-</h3>
+<!doctype html>
+<html lang="en">
 
-<div class="card mb-5">
-    <div class="card-header bg-secondary">
-        <h4 class="fw-bolder">Sampaikan Laporan Anda</h4>
-    </div>
-    <div class="card-body">
-        <form method="post" action="<?= base_url('C_bagusUser/tambahPengaduan') ?>" enctype="multipart/form-data">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Laporan Pengaduan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="<?= base_url('assets/img/logo titel.png') ?>">
 
-            <!-- <div class="mb-3">
-                <label for="tgl_pengaduan" class="form-label">Tanggal Pengaduan</label>
-                <input type="date" class="form-control" id="tgl_pengaduan" name="tgl_pengaduan" aria-describedby="emailHelp">
-            </div> -->
+    <style>
+        #table {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-            <div class="mb-3">
-                <label for="nik" class="form-label">NIK</label>
-                <input type="number" class="form-control" id="nik" name="nik" placeholder="Masukan NIK Anda" value="<?= $user['nik'] ?>" aria-label="Disabled input example" disabled>
-            </div>
+        #table td,
+        #table th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
 
-            <div class="row">
-                <div class="mb-3 col-md-6">
-                    <label for="nik" class="form-label">Kategori</label>
-                    <select name="kategori" class="form form-select" id="kategori">
-                        <option selected>- Pilih -</option>
-                        <?php foreach ($kategori as $k) : ?>
-                            <option value="<?= $k['id'] ?>"><?= $k['kategori'] ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
+        #table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
 
-                <div class="mb-3 col-md-6">
-                    <label for="nik" class="form-label">Subkategori</label>
-                    <select name="subkategori" class="form form-select" id="subkategori">
-                        <option selected>- Pilih -</option>
-                        <?php foreach ($subkategori as $sk) : ?>
-                            <option value="<?= $sk['subkategori_id'] ?>"><?= $sk['subkategori'] ?></option>
-                        <?php endforeach ?>
-                    </select>
-                </div>
-            </div>
+        #table tr:hover {
+            background-color: #ddd;
+        }
 
-            <div class="mb-3">
-                <label for="laporan" class="form-label">Laporan Anda</label>
-                <textarea type="text" class="form-control" id="laporan" name="laporan" placeholder="Ketik Isi Laporan Anda" required> </textarea>
-            </div>
+        #table th {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: left;
+            background-color: red;
+            color: white;
+        }
 
-            <div class="mb-3">
-                <label for="foto" class="form-label">Foto</label>
-                <input type="file" class="form-control" id="foto" name="foto" required>
-            </div>
+        #footer {
+            text-align: center;
+            margin-top: 100px;
+        }
+    </style>
 
+    <link rel="icon" type="image/x-icon" href="<?= base_url('assets/img/logo titel.png') ?>">
 
-            <a href="<?= base_url('C_bagusUser') ?>"><button type="button" class="btn btn-light btn-outline-secondary" style="border-radius: 10px;"><i class="fa-solid fa-backward"></i></button></a>
+</head>
 
-            <button type="submit" class="btn btn-light btn-outline-primary" style="border-radius: 10px;">Submit</button>
+<body>
+
+    <h1 class="">LaporinAja</h1>
+    <h3 class="mb-3">081215953726</h3>
 
 
 
-        </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <div style="text-align:center">
+        <h1> Laporan Pengaduan Masyarakat</h1>
+        <h2>Pemerintah Kabupaten Sukabumi Kecamatan Palabuhan Ratu</h2>
     </div>
 
-</div>
+    <table id="table" class="mb-5">
+
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Pelapor</th>
+                <th>Kategori</th>
+                <th>Subkategori</th>
+                <th>Laporan</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $no = 1;
+            foreach ($pengaduan as $pd) : ?>
+
+                <tr>
+                    <td scope="row"><?= $no++ ?></td>
+                    <td><?= $pd['nama'] ?></td>
+                    <td><?= $pd['kategori'] ?></td>
+                    <td><?= $pd['subkategori'] ?></td>
+                    <td><?= $pd['isi_laporan'] ?></td>
+                    <td>
+
+                        <?php
+                        if ($pd['status'] == '0') {
+                            echo 'Belum di tanggapi';
+                        } else if ($pd['status'] == 'proses') {
+                            echo 'Proses';
+                        } else if ($pd['status'] == 'selesai') {
+                            echo 'Selsai';
+                        }
+                        ?>
+
+                    </td>
+
+                </tr>
+            <?php endforeach;  ?>
+
+
+        </tbody>
+    </table>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+    </script>
+</body>
+
+
+</html>
