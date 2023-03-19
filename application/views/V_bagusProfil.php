@@ -17,14 +17,6 @@
             </tr>
             <tr>
                 <td>
-                    <h6>Username</h6>
-                </td>
-                <td>
-                    <h6> : <?= $user['username'] ?></h6>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <h6>Nomor Telepon</h6>
                 </td>
                 <td>
@@ -61,16 +53,10 @@
                         <div class="modal-body">
                             <form method="post" action="<?= base_url('C_bagusUser/editProfil') ?>">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">Nama</label>
                                             <input type="text" class="form-control" id="nama" name="nama" value="<?= $user['nama'] ?>">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="exampleInputPassword1" class="form-label">Username</label>
-                                            <input type="text" class="form-control" id="username" name="username" value="<?= $user['username'] ?>">
                                         </div>
                                     </div>
                                 </div>
