@@ -20,6 +20,7 @@
                             <th>Tanggal Pengaduan</th>
                             <th>Kategori</th>
                             <th>Isi</th>
+                            <th>Status</th>
 
 
                         </tr>
@@ -33,6 +34,17 @@
                             <td><?= $r['tanggal_pengaduan'] ?></td>
                             <td><?= $r['kategori'] ?></td>
                             <td><?= $r['isi_laporan'] ?></td>
+                            <td>
+                                <?php
+                        if ($r['status'] == '0') {
+                            echo 'Belum di tanggapi';
+                        } else if ($r['status'] == 'proses') {
+                            echo 'Proses';
+                        } else if ($r['status'] == 'selesai') {
+                            echo 'Selsai';
+                        }
+                        ?>
+                            </td>
 
                         </tr>
                         <?php endforeach; ?>
