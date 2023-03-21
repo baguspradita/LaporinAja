@@ -27,7 +27,7 @@
                             <div class="modal-body">
                                 <?php foreach ($notif as $n) : ?>
 
-                                <?php if ($n['read_status'] == 0) { ?>
+                                <?php if ($n['read_status'] == "0") { ?>
                                 <div class="row">
                                     <div class="col-md-10">
                                         <?= $n['nama'] . ' telah membuat pengaduan baru' ?>
